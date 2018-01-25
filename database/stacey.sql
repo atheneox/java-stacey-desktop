@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost
--- Tiempo de generación: 25-01-2018 a las 15:33:37
--- Versión del servidor: 10.1.21-MariaDB
--- Versión de PHP: 7.1.1
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 25-01-2018 a las 15:54:42
+-- Versión del servidor: 10.1.28-MariaDB
+-- Versión de PHP: 5.6.32
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -56,14 +58,6 @@ CREATE TABLE `actors` (
   `children` varchar(100) NOT NULL,
   `image` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `actors`
---
-
-INSERT INTO `actors` (`name`, `description`, `dob`, `country`, `height`, `spouse`, `children`, `image`) VALUES
-('Brad Pitt', 'alkajblkjbdescripción', 'Diciembre, 18, 1963', 'Estados Unidos', '1.80 m', 'Jennifer Aniston', 'Silah Novelyasa,saas', '192.168.43.1/image.jpg'),
-('Marcos Pineda', 'aksjfasjas', '21/Abril de 1994', 'Panamá', '1.85.5', 'Any Olsen', 'Britanny Pineda', '');
 
 -- --------------------------------------------------------
 
@@ -431,8 +425,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `name`, `lastname`, `cellphone`, `email`, `documenttype_id`, `documentnumber`, `description`, `active_id`, `visible_id`, `locked_id`, `destroyed_id`, `created_at`, `updated_at`) VALUES
-(1, 'Marcos', 'Pineda', '6994-3906', 'lc.mpineda@gmail.com', 4, '8-885-1905', 'Un ser de una inteligencia bestial !!!', 1, 1, 2, 2, '2018-01-24 19:18:26', '2018-01-25 00:26:19'),
-(3, 'Karla', 'Pineda', '6343-1124', 'kpineda@gmail.com', 4, '8-233-2344', 'Gordita.', 1, 1, 2, 2, '2018-01-25 01:01:41', '2018-01-25 01:01:41');
+(1, 'Nombre1', 'Apellido1', '6541-1324', 'usuario@usuario.com', 4, '9-999-999', 'Una pequeña descripción.', 1, 1, 2, 2, '2018-01-24 19:18:26', '2018-01-25 14:38:24'),
+(3, 'Nombre2', 'Apellido2', '6343-1124', 'usuario2@usuario.com', 4, '8-233-2344', 'Una pequeña descripción.', 1, 1, 2, 2, '2018-01-25 01:01:41', '2018-01-25 14:39:22');
 
 -- --------------------------------------------------------
 
@@ -629,96 +623,115 @@ ALTER TABLE `visible`
 --
 ALTER TABLE `active`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT de la tabla `binnacle`
 --
 ALTER TABLE `binnacle`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT de la tabla `client`
 --
 ALTER TABLE `client`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT de la tabla `collection`
 --
 ALTER TABLE `collection`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT de la tabla `destroyed`
 --
 ALTER TABLE `destroyed`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT de la tabla `documenttype`
 --
 ALTER TABLE `documenttype`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
 --
 -- AUTO_INCREMENT de la tabla `locked`
 --
 ALTER TABLE `locked`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT de la tabla `model`
 --
 ALTER TABLE `model`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT de la tabla `module`
 --
 ALTER TABLE `module`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT de la tabla `permissions`
 --
 ALTER TABLE `permissions`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT de la tabla `price`
 --
 ALTER TABLE `price`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT de la tabla `product`
 --
 ALTER TABLE `product`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT de la tabla `roles`
 --
 ALTER TABLE `roles`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
 --
 -- AUTO_INCREMENT de la tabla `security`
 --
 ALTER TABLE `security`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT de la tabla `stock`
 --
 ALTER TABLE `stock`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT de la tabla `submodel`
 --
 ALTER TABLE `submodel`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT de la tabla `trademark`
 --
 ALTER TABLE `trademark`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT de la tabla `user`
 --
 ALTER TABLE `user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT de la tabla `visible`
 --
 ALTER TABLE `visible`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- Restricciones para tablas volcadas
 --
@@ -819,6 +832,7 @@ ALTER TABLE `user`
   ADD CONSTRAINT `fk_user_documenttype` FOREIGN KEY (`documenttype_id`) REFERENCES `documenttype` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_user_locked` FOREIGN KEY (`locked_id`) REFERENCES `locked` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_user_visible` FOREIGN KEY (`visible_id`) REFERENCES `visible` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
